@@ -1,5 +1,4 @@
 import pandas as pd
-import yfinance as yf
 import matplotlib.pyplot as plt
 
 # Example portfolio: stock tickers and weights
@@ -9,9 +8,8 @@ portfolio = {
     'GOOGL': 0.3
 }
 
-# Download historical price data for the portfolio stocks
-tickers = list(portfolio.keys())
-data = yf.download(tickers, start='2023-01-01', end='2024-01-01')['Adj Close']
+# Load sample data from CSV
+data = pd.read_csv('../data/sample_prices.csv', index_col='Date', parse_dates=True)
 
 # Calculate daily returns
 returns = data.pct_change().dropna()
